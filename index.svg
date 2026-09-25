@@ -1,0 +1,223 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 1200 760"
+     width="100%"
+     height="100%"
+     preserveAspectRatio="xMidYMid meet">
+
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b0d10"/>
+      <stop offset="1" stop-color="#171b20"/>
+    </linearGradient>
+
+    <linearGradient id="edge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f4f0e8"/>
+      <stop offset=".45" stop-color="#858b92"/>
+      <stop offset="1" stop-color="#30353b"/>
+    </linearGradient>
+
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow
+        dx="0"
+        dy="16"
+        stdDeviation="18"
+        flood-color="#000"
+        flood-opacity=".48"/>
+    </filter>
+
+    <style>
+      .title {
+        font: 700 76px Georgia, "Times New Roman", serif;
+        letter-spacing: -2px;
+        fill: #f3f0e9;
+      }
+
+      .small {
+        font: 500 13px Arial, Helvetica, sans-serif;
+        letter-spacing: 4px;
+        fill: #9da3a9;
+      }
+
+      .buttonText {
+        font: 700 18px Arial, Helvetica, sans-serif;
+        letter-spacing: 2px;
+        fill: #111316;
+      }
+
+      .button {
+        cursor: pointer;
+      }
+
+      .button:hover rect {
+        fill: #ffffff;
+      }
+
+      .button:active {
+        transform: translateY(2px);
+      }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="760" fill="url(#bg)"/>
+
+  <!-- Sharp-corner frame -->
+  <path
+    d="M58 58H1142V702H58Z"
+    fill="none"
+    stroke="url(#edge)"
+    stroke-width="2"/>
+
+  <path
+    d="M58 58H290
+       M910 58H1142
+       M58 702H290
+       M910 702H1142"
+    stroke="#f3f0e9"
+    stroke-width="5"/>
+
+  <!-- Angular details -->
+  <path
+    d="M58 180L180 58
+       M1020 58L1142 180
+       M58 580L180 702
+       M1020 702L1142 580"
+    fill="none"
+    stroke="#353a40"
+    stroke-width="1"/>
+
+  <path
+    d="M96 96H360
+       M840 664H1104"
+    stroke="#5e646a"
+    stroke-width="1"/>
+
+  <!-- Heading -->
+  <text
+    x="600"
+    y="285"
+    text-anchor="middle"
+    class="small">
+    WELCOME TO
+  </text>
+
+  <text
+    x="600"
+    y="390"
+    text-anchor="middle"
+    class="title">
+    Terry's Corner
+  </text>
+
+  <path
+    d="M430 420H770"
+    stroke="#777d83"
+    stroke-width="1"/>
+
+  <!-- Open Fern button -->
+  <g
+    class="button"
+    role="button"
+    aria-label="Open Fern"
+    tabindex="0"
+    onclick="openFern()"
+    onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openFern()}">
+
+    <rect
+      x="465"
+      y="468"
+      width="270"
+      height="72"
+      fill="#f0ede5"
+      filter="url(#shadow)"/>
+
+    <rect
+      x="465"
+      y="468"
+      width="270"
+      height="72"
+      fill="none"
+      stroke="#111316"
+      stroke-width="2"/>
+
+    <text
+      x="600"
+      y="512"
+      text-anchor="middle"
+      dominant-baseline="middle"
+      class="buttonText">
+      OPEN FERN
+    </text>
+  </g>
+
+  <!-- Footer -->
+  <text
+    x="600"
+    y="612"
+    text-anchor="middle"
+    class="small">
+    hi terry
+  </text>
+
+  <!-- JavaScript -->
+  <script><![CDATA[
+
+    function openFern() {
+
+      // Create a new about:blank tab
+      const win = window.open("about:blank", "_blank");
+
+      // Stop if the browser blocked the popup
+      if (!win) return;
+
+      // Put Fern inside the new about:blank page
+      win.document.open();
+
+      win.document.write(`
+        <!doctype html>
+        <html>
+        <head>
+          <meta charset="utf-8">
+
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1">
+
+          <title>Fern</title>
+
+          <style>
+            html,
+            body {
+              margin: 0;
+              width: 100%;
+              height: 100%;
+              overflow: hidden;
+              background: #111;
+            }
+
+            iframe {
+              display: block;
+              width: 100%;
+              height: 100%;
+              border: 0;
+            }
+          </style>
+        </head>
+
+        <body>
+
+          <iframe
+            src="https://s3.amazonaws.com/readvc/index.html"
+            title="Fern">
+          </iframe>
+
+        </body>
+        </html>
+      `);
+
+      win.document.close();
+    }
+
+  ]]></script>
+
+</svg>
