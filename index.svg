@@ -5,16 +5,35 @@
      preserveAspectRatio="xMidYMid meet">
 
   <defs>
+
+    <!-- Dark green background -->
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#0b0d10"/>
-      <stop offset="1" stop-color="#171b20"/>
+      <stop offset="0" stop-color="#020804"/>
+      <stop offset=".5" stop-color="#06140a"/>
+      <stop offset="1" stop-color="#020603"/>
     </linearGradient>
 
     <linearGradient id="edge" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#f4f0e8"/>
-      <stop offset=".45" stop-color="#858b92"/>
-      <stop offset="1" stop-color="#30353b"/>
+      <stop offset="0" stop-color="#dfffe5"/>
+      <stop offset=".45" stop-color="#4cff72"/>
+      <stop offset="1" stop-color="#0b5e20"/>
     </linearGradient>
+
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="bigGlow">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
 
     <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
       <feDropShadow
@@ -22,77 +41,238 @@
         dy="16"
         stdDeviation="18"
         flood-color="#000"
-        flood-opacity=".48"/>
+        flood-opacity=".7"/>
     </filter>
 
     <style>
+
       .title {
         font: 700 76px Georgia, "Times New Roman", serif;
         letter-spacing: -2px;
-        fill: #f3f0e9;
+        fill: #eaffee;
+        filter: url(#glow);
       }
 
       .small {
         font: 500 13px Arial, Helvetica, sans-serif;
         letter-spacing: 4px;
-        fill: #9da3a9;
-      }
-
-      .buttonText {
-        font: 700 18px Arial, Helvetica, sans-serif;
-        letter-spacing: 2px;
-        fill: #111316;
+        fill: #63d878;
       }
 
       .button {
         cursor: pointer;
       }
 
-      .button:hover rect {
-        fill: #ffffff;
+      .button:hover .menuBox {
+        fill: #0d3217;
+        stroke: #7aff91;
       }
 
       .button:active {
         transform: translateY(2px);
       }
+
+      .binary {
+        font: 18px "Courier New", monospace;
+        fill: #20ff4f;
+        opacity: .45;
+      }
+
+      .binaryBright {
+        font: 18px "Courier New", monospace;
+        fill: #8aff9d;
+        opacity: .85;
+      }
+
     </style>
+
+    <!-- Subtle scanline pattern -->
+    <pattern id="scanlines"
+             width="8"
+             height="8"
+             patternUnits="userSpaceOnUse">
+
+      <rect width="8" height="8" fill="transparent"/>
+
+      <rect
+        width="8"
+        height="1"
+        y="0"
+        fill="#35ff55"
+        opacity=".035"/>
+
+    </pattern>
+
+    <!-- Binary streams -->
+
+    <g id="stream1" class="binary">
+      <text x="0" y="0">1</text>
+      <text x="0" y="24">0</text>
+      <text x="0" y="48">1</text>
+      <text x="0" y="72">1</text>
+      <text x="0" y="96">0</text>
+      <text x="0" y="120">1</text>
+      <text x="0" y="144">0</text>
+      <text x="0" y="168">0</text>
+      <text x="0" y="192">1</text>
+      <text x="0" y="216">0</text>
+      <text x="0" y="240">1</text>
+      <text x="0" y="264">1</text>
+      <text x="0" y="288">0</text>
+      <text x="0" y="312">1</text>
+      <text x="0" y="336">0</text>
+      <text x="0" y="360">1</text>
+      <text x="0" y="384">1</text>
+      <text x="0" y="408">0</text>
+      <text x="0" y="432">1</text>
+      <text x="0" y="456">0</text>
+      <text x="0" y="480">1</text>
+      <text x="0" y="504">0</text>
+      <text x="0" y="528">1</text>
+      <text x="0" y="552">1</text>
+      <text x="0" y="576">0</text>
+      <text x="0" y="600">1</text>
+      <text x="0" y="624">0</text>
+      <text x="0" y="648">1</text>
+
+      <animateTransform
+        attributeName="transform"
+        type="translate"
+        from="0 -700"
+        to="0 800"
+        dur="7s"
+        repeatCount="indefinite"/>
+    </g>
+
+    <g id="stream2" class="binaryBright">
+      <text x="0" y="0">0</text>
+      <text x="0" y="24">1</text>
+      <text x="0" y="48">0</text>
+      <text x="0" y="72">1</text>
+      <text x="0" y="96">0</text>
+      <text x="0" y="120">0</text>
+      <text x="0" y="144">1</text>
+      <text x="0" y="168">1</text>
+      <text x="0" y="192">0</text>
+      <text x="0" y="216">1</text>
+      <text x="0" y="240">1</text>
+      <text x="0" y="264">0</text>
+      <text x="0" y="288">1</text>
+      <text x="0" y="312">0</text>
+      <text x="0" y="336">1</text>
+      <text x="0" y="360">0</text>
+      <text x="0" y="384">1</text>
+      <text x="0" y="408">1</text>
+      <text x="0" y="432">0</text>
+      <text x="0" y="456">1</text>
+      <text x="0" y="480">0</text>
+      <text x="0" y="504">1</text>
+      <text x="0" y="528">0</text>
+      <text x="0" y="552">1</text>
+      <text x="0" y="576">0</text>
+      <text x="0" y="600">1</text>
+
+      <animateTransform
+        attributeName="transform"
+        type="translate"
+        from="0 -650"
+        to="0 800"
+        dur="4.5s"
+        repeatCount="indefinite"/>
+    </g>
+
   </defs>
 
-  <!-- Background -->
+
+  <!-- BACKGROUND -->
+
   <rect width="1200" height="760" fill="url(#bg)"/>
 
-  <!-- Sharp-corner frame -->
+  <!-- Matrix binary rain -->
+
+  <g opacity=".5">
+    <use href="#stream1" x="85"/>
+    <use href="#stream1" x="145" style="animation-delay:-2s"/>
+    <use href="#stream1" x="215"/>
+    <use href="#stream1" x="300" style="animation-delay:-4s"/>
+    <use href="#stream1" x="375"/>
+    <use href="#stream1" x="455" style="animation-delay:-1s"/>
+    <use href="#stream1" x="535"/>
+    <use href="#stream1" x="625" style="animation-delay:-3s"/>
+    <use href="#stream1" x="710"/>
+    <use href="#stream1" x="790" style="animation-delay:-5s"/>
+    <use href="#stream1" x="870"/>
+    <use href="#stream1" x="945" style="animation-delay:-2s"/>
+    <use href="#stream1" x="1020"/>
+    <use href="#stream1" x="1090" style="animation-delay:-4s"/>
+    <use href="#stream1" x="1150"/>
+  </g>
+
+  <g opacity=".8">
+    <use href="#stream2" x="115"/>
+    <use href="#stream2" x="260"/>
+    <use href="#stream2" x="420"/>
+    <use href="#stream2" x="580"/>
+    <use href="#stream2" x="750"/>
+    <use href="#stream2" x="900"/>
+    <use href="#stream2" x="1060"/>
+  </g>
+
+  <!-- Dark overlay so the UI stays readable -->
+
+  <rect
+    width="1200"
+    height="760"
+    fill="#020804"
+    opacity=".45"/>
+
+  <!-- Scanlines -->
+
+  <rect
+    width="1200"
+    height="760"
+    fill="url(#scanlines)"/>
+
+
+  <!-- SHARP-CORNER FRAME -->
+
   <path
     d="M58 58H1142V702H58Z"
     fill="none"
     stroke="url(#edge)"
-    stroke-width="2"/>
+    stroke-width="2"
+    opacity=".9"/>
 
   <path
     d="M58 58H290
        M910 58H1142
        M58 702H290
        M910 702H1142"
-    stroke="#f3f0e9"
-    stroke-width="5"/>
+    stroke="#62ff7c"
+    stroke-width="5"
+    filter="url(#glow)"/>
 
-  <!-- Angular details -->
+
+  <!-- ANGULAR DETAILS -->
+
   <path
     d="M58 180L180 58
        M1020 58L1142 180
        M58 580L180 702
        M1020 702L1142 580"
     fill="none"
-    stroke="#353a40"
+    stroke="#176b29"
     stroke-width="1"/>
 
   <path
     d="M96 96H360
        M840 664H1104"
-    stroke="#5e646a"
+    stroke="#29863b"
     stroke-width="1"/>
 
-  <!-- Heading -->
+
+  <!-- HEADING -->
+
   <text
     x="600"
     y="285"
@@ -111,10 +291,12 @@
 
   <path
     d="M430 420H770"
-    stroke="#777d83"
+    stroke="#37a64e"
     stroke-width="1"/>
 
-  <!-- Open Fern button -->
+
+  <!-- HAMBURGER BUTTON -->
+
   <g
     class="button"
     role="button"
@@ -124,33 +306,35 @@
     onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openFern()}">
 
     <rect
-      x="465"
+      class="menuBox"
+      x="535"
       y="468"
-      width="270"
-      height="72"
-      fill="#f0ede5"
+      width="130"
+      height="90"
+      fill="#06150a"
+      stroke="#35c950"
+      stroke-width="2"
       filter="url(#shadow)"/>
 
-    <rect
-      x="465"
-      y="468"
-      width="270"
-      height="72"
-      fill="none"
-      stroke="#111316"
-      stroke-width="2"/>
+    <!-- Hamburger -->
 
-    <text
-      x="600"
-      y="512"
-      text-anchor="middle"
-      dominant-baseline="middle"
-      class="buttonText">
-      OPEN FERN
-    </text>
+    <g
+      stroke="#c9ffd2"
+      stroke-width="6"
+      stroke-linecap="square"
+      filter="url(#glow)">
+
+      <line x1="565" y1="492" x2="635" y2="492"/>
+      <line x1="565" y1="513" x2="635" y2="513"/>
+      <line x1="565" y1="534" x2="635" y2="534"/>
+
+    </g>
+
   </g>
 
-  <!-- Footer -->
+
+  <!-- FOOTER -->
+
   <text
     x="600"
     y="612"
@@ -159,7 +343,21 @@
     hi terry
   </text>
 
-  <!-- JavaScript -->
+
+  <!-- TERRY IMAGE -->
+
+  <image
+    href="https://cdn.jsdelivr.net/gh/webstashdude/terry@latest/terry.png"
+    x="1000"
+    y="530"
+    width="125"
+    height="125"
+    preserveAspectRatio="xMidYMid meet"
+    filter="url(#glow)"/>
+
+
+  <!-- JAVASCRIPT -->
+
   <script><![CDATA[
 
     function openFern() {
@@ -177,6 +375,7 @@
         <!doctype html>
         <html>
         <head>
+
           <meta charset="utf-8">
 
           <meta
@@ -186,6 +385,7 @@
           <title>Fern</title>
 
           <style>
+
             html,
             body {
               margin: 0;
@@ -201,7 +401,9 @@
               height: 100%;
               border: 0;
             }
+
           </style>
+
         </head>
 
         <body>
@@ -216,6 +418,7 @@
       `);
 
       win.document.close();
+
     }
 
   ]]></script>
